@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlideableCardView">
+        <attr name="card_color" format="reference"/>
+        <attr name="card_text" format="string"/>
+        <attr name="card_corner_radius" format="dimension"/>
+        <attr name="card_shadow_width" format="dimension"/>
+        <attr name="card_src" format="reference"/>
+        <attr name="card_src_alpha" format="integer"/>
+        <attr name="card_text_color" format="reference"/>
+        <attr name="card_text_size" format="dimension"/>
+        <attr name="card_final_translation_x" format="integer"/>
+        <attr name="card_final_translation_y" format="integer"/>
+        <attr name="card_final_rotation" format="integer"/>
+        <attr name="card_trigger_translation_x" format="integer"/>
+    </declare-styleable>
+</resources>
