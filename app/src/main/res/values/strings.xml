@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CETX</string>
+
+    <string name="push_words">点击这里更新 Bomb 数据</string>
+
+    <string name="text_memory">记忆单词</string>
+    <string name="text_games">玩把游戏</string>
 </resources>
