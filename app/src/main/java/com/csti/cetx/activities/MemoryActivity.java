@@ -9,9 +9,16 @@ import android.widget.Toast;
 import com.csti.cetx.R;
 import com.csti.cetx.views.SlideableCardView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.bmob.v3.exception.BmobException;
 
 public class MemoryActivity extends AppCompatActivity {
+
+    private List<String> mWordsList = new ArrayList<>();
+    private int from = 0;
+    private int to   = 10;
 
     private SlideableCardView[] mSlideableCards = new SlideableCardView[]{
             findViewById(R.id.card_1),
@@ -51,15 +58,15 @@ public class MemoryActivity extends AppCompatActivity {
     }
 
     private void iniCards(){
-        //查找Person表里面id为6b6c11c537的数据
-        BmobQuery<Person> bmobQuery = new BmobQuery<Person>();
-        bmobQuery.getObject("6b6c11c537", new QueryListener<Person>() {
+        BmobQuery<Category> bmobQuery = new BmobQuery<>();
+        bmobQuery.findObjects(new FindListener<Category>() {
             @Override
-            public void done(Person object, BmobException e) {
-                if(e==null){
-                    toast("查询成功");
-                }else{
-                    toast("查询失败：" + e.getMessage());
+            public void done(List<Category> categories, BmobException e) {
+                if (e == null) {
+                    Snackbar.make(mBtnQuery, "查询成功：" + categories.size(), Snackbar.LENGTH_LONG).show();
+                } else {
+                    Log.e("BMOB", e.toString());
+                    Snackbar.make(mBtnQuery, e.getMessage(), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
