@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.csti.cetx.R;
+import com.csti.cetx.bmob.Vocabulary;
 import com.csti.cetx.views.SlideableCardView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 public class MemoryActivity extends AppCompatActivity {
 
@@ -58,15 +61,14 @@ public class MemoryActivity extends AppCompatActivity {
     }
 
     private void iniCards(){
-        BmobQuery<Category> bmobQuery = new BmobQuery<>();
-        bmobQuery.findObjects(new FindListener<Category>() {
+        BmobQuery<Vocabulary> bmobQuery = new BmobQuery<>();
+        bmobQuery.findObjects(new FindListener<Vocabulary>() {
             @Override
-            public void done(List<Category> categories, BmobException e) {
+            public void done(List<Vocabulary> categories, BmobException e) {
                 if (e == null) {
-                    Snackbar.make(mBtnQuery, "查询成功：" + categories.size(), Snackbar.LENGTH_LONG).show();
+
                 } else {
-                    Log.e("BMOB", e.toString());
-                    Snackbar.make(mBtnQuery, e.getMessage(), Snackbar.LENGTH_LONG).show();
+
                 }
             }
         });

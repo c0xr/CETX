@@ -8,15 +8,20 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.csti.cetx.R;
+import com.csti.cetx.bmob.Vocabulary;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.BmobBatch;
+import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BatchResult;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListListener;
 
 public class PushItemsActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private List<String> mWordsList = new ArrayList();
+    private List<BmobObject> vocabularies = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,20 +38,33 @@ public class PushItemsActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void iniWordsList(){
+        for (int i = 0; i < 3; i++) {
+            Vocabulary vocabulary = new Vocabulary();
+//            vocabulary.setName("category"category + i);
+//            vocabulary.setDesc("类别" + i);
+//            vocabulary.setSequence(i);
+            vocabularies.add(vocabulary);
+        }
 
     }
 
     private void pushToBmob(){
-        Person p2 = new Person();
-        p2.setName("lucky");
-        p2.setAddress("北京海淀");
-        p2.save(new SaveListener<String>() {
+        new BmobBatch().insertBatch(vocabularies).doBatch(new QueryListListener<BatchResult>() {
+
             @Override
-            public void done(String objectId,BmobException e) {
-                if(e==null){
-                    toast("添加数据成功，返回objectId为："+objectId);
-                }else{
-                    toast("创建数据失败：" + e.getMessage());
+            public void done(List<BatchResult> results, BmobException e) {
+                if (e == null) {
+                    for (int i = 0; i < results.size(); i++) {
+                        BatchResult result = results.get(i);
+                        BmobException ex = result.getError();
+                        if (ex == null) {
+
+                        } else {
+
+                        }
+                    }
+                } else {
+
                 }
             }
         });

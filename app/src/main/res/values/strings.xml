@@ -5,4 +5,10 @@
 
     <string name="text_memory">记忆单词</string>
     <string name="text_games">玩把游戏</string>
+
+    <string name="register">注册</string>
+    <string name="login">登陆</string>
+    <string name="account">请输入账户名</string>
+    <string name="again_password">请再次输入密码</string>
+    <string name="password">输入密码</string>
 </resources>
