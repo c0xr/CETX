@@ -86,22 +86,25 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private void pushResistQuest(){
         final String account = mAccountText.getText().toString();
         final String password= mPasswordText.getText().toString();
-        if (password != mAgainPasswordText.getText().toString()){
+        if (!password.equals(mAgainPasswordText.getText().toString())){
             Toast.makeText(getActivity(), "两次输入密码不一致，重新输入", Toast.LENGTH_LONG).show();
             mAgainPasswordText.setText("");
             return;
         }
 
-        User p2 = new User();
-        p2.setmUserName(account);
-        p2.setPassword(password);
-        p2.save(new SaveListener<String>() {
+        // 使用BmobSDK提供的注册功能
+        User myUser=new User();
+        myUser.setUsername(account);
+        myUser.setPassword(password);
+        myUser.signUp(new SaveListener<User>() {
             @Override
-            public void done(String objectId, BmobException e) {
+            public void done(User s, BmobException e) {
                 if(e==null){
-                    MyToast.maketext(getActivity(), "注册成功");
+                    Toast.makeText(getActivity(), "注册成功", Toast.LENGTH_SHORT).show();
+                    ((LogInActivity)getActivity()).setLogInView();
                 }else{
-                    MyToast.maketext(getActivity(), "注册失败，请检查网络");
+                    //loge(e);
+                    Toast.makeText(getActivity(), "注册失败", Toast.LENGTH_SHORT).show();
                 }
             }
         });

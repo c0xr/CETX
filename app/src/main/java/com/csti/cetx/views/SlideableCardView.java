@@ -199,6 +199,10 @@ public class SlideableCardView extends FrameLayout {
         void onDragOut(Direction dir);
     }
 
+    public void setText(String text){
+        mText.setText(text);
+    }
+
     public int getCardColor() {
         return mCardColor;
     }

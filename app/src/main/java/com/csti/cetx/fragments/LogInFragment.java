@@ -1,7 +1,5 @@
 package com.csti.cetx.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -13,16 +11,24 @@ import android.view.ViewGroup;
 
 import com.csti.cetx.R;
 import com.csti.cetx.activities.LogInActivity;
+import com.csti.cetx.activities.MainActivity;
+import com.csti.cetx.bmob.User;
+import com.csti.cetx.utils.MyToast;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
+
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
 
 public class LogInFragment extends Fragment implements View.OnClickListener {
 
     private View view;
 
-    private TextInputLayout mAccount;
-    private TextInputLayout mPassword;
+    private TextInputEditText mAccount;
+    private TextInputEditText mPassword;
     private AppCompatButton mRegister;
     private AppCompatButton mLogIn;
 
@@ -73,13 +79,26 @@ public class LogInFragment extends Fragment implements View.OnClickListener {
                 return;
 
             case R.id.login:
-
+                LogIn();
                 return;
         }
     }
 
     private void LogIn(){
+        String account = mAccount.getText().toString();
+        String password= mPassword.getText().toString();
+        //此处替换为你的用户名密码
+        BmobUser.loginByAccount(account, password, new LogInListener<User>() {
 
+            @Override
+            public void done(User user, BmobException e) {
+                if (e == null){
+                    MainActivity.actionStart(getActivity());
+                }else {
+                    MyToast.maketext(getActivity(), "失败，请检查网络");
+                }
+            }
+        });
     }
 
 }

@@ -6,8 +6,17 @@ public class Vocabulary extends BmobObject {
 
     private String spell;
     private String paraphrase;
+    private boolean isMemory;
 
-    public Vocabulary(){ }
+    public Vocabulary(){
+        isMemory = false;
+    }
+
+    public Vocabulary(String spell, String paraphrase){
+        this.spell = spell;
+        this.paraphrase = paraphrase;
+        isMemory = false;
+    }
 
     public String getSpell() {
         return spell;
@@ -23,5 +32,13 @@ public class Vocabulary extends BmobObject {
 
     public void setParaphrase(String paraphrase) {
         this.paraphrase = paraphrase;
+    }
+
+    public boolean isMemory() {
+        return isMemory;
+    }
+
+    public void setMemory(boolean memory) {
+        isMemory = memory;
     }
 }

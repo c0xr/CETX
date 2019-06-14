@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.csti.cetx.R;
@@ -24,6 +25,7 @@ public class LogInActivity extends BaseActivity {
 
         if (BmobUser.isLogin()){
             MainActivity.actionStart(this);
+            finish();
         }
 
         iniViews();
@@ -49,6 +51,11 @@ public class LogInActivity extends BaseActivity {
 
     public void setRegisterView(){
         replaceFragment(mRegister);
+    }
+
+    public static void actionStart(Object activity){
+        Intent intent = new Intent((BaseActivity)activity, LogInActivity.class);
+        ((BaseActivity) activity).startActivity(intent);
     }
 
 }

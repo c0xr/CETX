@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,15 +15,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.csti.cetx.R;
+import com.csti.cetx.utils.activity.PushItemsActivity;
 import com.csti.cetx.views.SlideableCardView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import cn.bmob.v3.BmobUser;
+
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView memory;
     private TextView game;
+    private Button   mResetButton;
+    private Button   mLogOutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +44,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void iniViews(){
         memory = findViewById(R.id.text_memory);
-        game   = findViewById(R.id.text_games);
-
         memory.setOnClickListener(this);
+
+        game   = findViewById(R.id.text_games);
         game.setOnClickListener(this);
+
+        mResetButton = findViewById(R.id.reset);
+        mResetButton.setOnClickListener(this);
+
+        mLogOutButton = findViewById(R.id.log_out);
+        mLogOutButton.setOnClickListener(this);
     }
 
     @Override
@@ -51,13 +64,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return;
 
             case R.id.text_games:
-                Toast.makeText(MainActivity.this, "尚未推出，敬请期待", Toast.LENGTH_LONG).show();
+                GameActivity.actionStart(MainActivity.this);
+                return;
+
+            case R.id.reset:
+                PushItemsActivity.actionStart(MainActivity.this);
+                return;
+
+            case R.id.log_out:
+                BmobUser.logOut();
+                LogInActivity.actionStart(MainActivity.this);
+                finish();
                 return;
         }
     }
 
-    public static void actionStart(AppCompatActivity activity){
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
+    public static void actionStart(Object activity){
+        Intent intent = new Intent((BaseActivity)activity, MainActivity.class);
+        ((BaseActivity)activity).startActivity(intent);
     }
 }
