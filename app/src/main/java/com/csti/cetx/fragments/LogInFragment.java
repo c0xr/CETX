@@ -94,6 +94,9 @@ public class LogInFragment extends Fragment implements View.OnClickListener {
             public void done(User user, BmobException e) {
                 if (e == null){
                     MainActivity.actionStart(getActivity());
+                    if (getActivity() != null){
+                        getActivity().finish();
+                    }
                 }else {
                     MyToast.maketext(getActivity(), "失败，请检查网络");
                 }
