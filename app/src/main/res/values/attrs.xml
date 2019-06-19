@@ -3,6 +3,7 @@
     <declare-styleable name="SlideableCardView">
         <attr name="card_color" format="reference"/>
         <attr name="card_text" format="string"/>
+        <attr name="card_paraphrase" format="string"/>
         <attr name="card_corner_radius" format="dimension"/>
         <attr name="card_shadow_width" format="dimension"/>
         <attr name="card_src" format="reference"/>

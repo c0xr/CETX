@@ -72,7 +72,8 @@ public class MemoryActivity extends BaseActivity {
 
         for (SlideableCardView cardView : mSlideableCards){
             if (mWordsList.size()>num && mWordsList.get(num) != null){
-                cardView.setText(mWordsList.get(num++).getSpell());
+                cardView.setParaphraseText(mWordsList.get(num).getParaphrase());
+                cardView.setSpellText(mWordsList.get(num++).getSpell());
             }
             cardView.setOnDragListener(new SlideableCardView.OnDragListener() {
                 @Override

@@ -12,7 +12,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
             android:gravity="center"
             android:text="@string/login"
             android:textSize="45sp"/>
@@ -27,7 +27,6 @@
                 android:id="@+id/account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:hint="@string/account"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -60,6 +59,7 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:text="@string/login"
                 android:textSize="17sp"
+                android:textColor="@color/white"
                 android:padding="5sp"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -70,6 +70,7 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:text="@string/register"
                 android:textSize="17sp"
+                android:textColor="@color/white"
                 android:padding="5sp"/>
 
         </LinearLayout>

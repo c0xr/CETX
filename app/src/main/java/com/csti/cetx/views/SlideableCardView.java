@@ -55,6 +55,7 @@ public class SlideableCardView extends FrameLayout {
 
     private ImageView mCardBackground;
     private TextView mText;
+    private TextView mParaphraseText;
     private float mLastX;
     private float mTranslationX;
     private boolean mDraggable =true;
@@ -69,11 +70,13 @@ public class SlideableCardView extends FrameLayout {
         LayoutInflater.from(context).inflate(R.layout.layout_slideable_card_view,this);
 
         mCardBackground=findViewById(R.id.card_background);
-        mText=findViewById(R.id.text);
+        mText=findViewById(R.id.spell);
+        mParaphraseText = findViewById(R.id.paraphrase);
 
         TypedArray ta=context.obtainStyledAttributes(attrs, R.styleable.SlideableCardView);
         int colorId=ta.getResourceId(R.styleable.SlideableCardView_card_color,DEFAULT_COLOR_ID);
         String text=ta.getString(R.styleable.SlideableCardView_card_text);
+        String paraphrase = ta.getString(R.styleable.SlideableCardView_card_paraphrase);
         mCardRadius =ta.getDimensionPixelSize(R.styleable.SlideableCardView_card_corner_radius,DEFAULT_CARD_RADIUS);
         mCardShadowWidth =ta.getDimensionPixelSize(R.styleable.SlideableCardView_card_shadow_width,DEFAULT_CARD_SHADOW_WIDTH);
         int srcId=ta.getResourceId(R.styleable.SlideableCardView_card_src,DEFAULT_CARD_SRC_ID);
@@ -88,9 +91,14 @@ public class SlideableCardView extends FrameLayout {
 
         mCardColor =getResources().getColor(colorId);
         mCardTextColor =getResources().getColor(textColorId);
+
         mText.setText(text);
         mText.setTextColor(mCardTextColor);
         mText.setTextSize(textSize);
+        mParaphraseText.setText(paraphrase);
+        mParaphraseText.setTextColor(mCardTextColor);
+        mParaphraseText.setTextSize(textSize/5*3);
+
         mCardSrc =srcId!=DEFAULT_CARD_SRC_ID?BitmapFactory.decodeResource(getResources(), srcId):null;
 
         Drawable mDrawable=new Drawable() {
@@ -199,8 +207,12 @@ public class SlideableCardView extends FrameLayout {
         void onDragOut(Direction dir);
     }
 
-    public void setText(String text){
+    public void setSpellText(String text){
         mText.setText(text);
+    }
+
+    public void setParaphraseText(String text){
+        mParaphraseText.setText(text);
     }
 
     public int getCardColor() {

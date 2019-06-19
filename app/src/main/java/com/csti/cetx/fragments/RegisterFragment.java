@@ -29,7 +29,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private TextInputEditText mAccountText;      // 账户
     private TextInputEditText mPasswordText;     // 密码
     private TextInputEditText mAgainPasswordText;// 再次输入密码
-    private AppCompatButton   mAppCompatButton;   // 注册
+    private AppCompatButton   mRegistButton;  // 注册
+    private AppCompatButton   mCancelButton;  // 注册
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -58,23 +59,19 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         mAgainPasswordText = view.findViewById(R.id.again_password);
         mAgainPasswordText.setOnClickListener(this);
 
-        mAppCompatButton = view.findViewById(R.id.register);
-        mAppCompatButton.setOnClickListener(this);
+        mRegistButton = view.findViewById(R.id.register);
+        mRegistButton.setOnClickListener(this);
+
+        mCancelButton = view.findViewById(R.id.cancel);
+        mCancelButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.account:
-
-                return;
-
-            case R.id.password:
-
-                return;
-
-            case R.id.again_password:
-
+            case R.id.cancel:
+                if (getActivity() != null)
+                    ((LogInActivity)getActivity()).setLogInView();
                 return;
 
             case R.id.register:
