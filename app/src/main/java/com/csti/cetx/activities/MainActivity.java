@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.csti.cetx.R;
+import com.csti.cetx.bmob.User;
+import com.csti.cetx.utils.MyToast;
 import com.csti.cetx.utils.activity.PushItemsActivity;
 import com.csti.cetx.views.SlideableCardView;
 
@@ -68,7 +70,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 return;
 
             case R.id.reset:
-                PushItemsActivity.actionStart(MainActivity.this);
+                if (BmobUser.getCurrentUser(User.class).isAdministrator()){
+                    PushItemsActivity.actionStart(MainActivity.this);
+                }else {
+                    MyToast.maketext(MainActivity.this, "此功能仅对管理员开发");
+                }
                 return;
 
             case R.id.log_out:
