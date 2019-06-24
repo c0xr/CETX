@@ -87,7 +87,7 @@
     <color name="sienna">#a0522d</color><!--赭色 -->
     <color name="olive">#808000</color><!--橄榄色 -->
     <color name="chartreuse">#7fff00</color><!--黄绿色 -->
-    <color name="light_green">#adff2f</color><!--黄绿色 -->
+    <color name="light_gree">#adff2f</color><!--黄绿色 -->
     <color name="green">#008000</color><!--绿色 -->
     <color name="darkgreen">#006400</color><!--暗绿色 -->
     <color name="darkolivegreen">#556b2f</color><!--暗橄榄绿 -->
@@ -120,7 +120,7 @@
     <color name="royalblue">#4169e1</color><!--皇家蓝 -->
     <color name="azure">#f0ffff</color><!--天蓝色 -->
     <color name="skyblue">#87ceeb</color><!--天蓝色 -->
-    <color name="deepskyblue">#00bfff</color><!--深天蓝色 -->
+    <color name="light_green">#00bfff</color><!--深天蓝色 -->
     <color name="lightskyblue">#87cefa</color><!--亮天蓝色 -->
     <color name="lightseagreen">#20b2aa</color><!--亮海蓝色 -->
     <color name="lightblue">#add8e6</color><!--亮蓝色 -->

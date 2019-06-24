@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,6 +99,7 @@ public class LogInFragment extends Fragment implements View.OnClickListener {
                         getActivity().finish();
                     }
                 }else {
+                    Log.d("123123", e.getErrorCode() + e.getMessage());
                     MyToast.maketext(getActivity(), "失败，请检查网络");
                 }
             }
